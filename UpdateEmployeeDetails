@@ -1,0 +1,60 @@
+CREATE PROCEDURE UpdateEmployeeDetails
+    @EmployeeID INT,
+    @FirstName NVARCHAR(50),
+    @LastName NVARCHAR(50),
+    @Gender CHAR(1),
+    @NationalIDNumber NVARCHAR(15),
+    @JobTitle NVARCHAR(100),
+    @DepartmentID INT,
+    @Department NVARCHAR(50),
+    @DepartmentName NVARCHAR(50),
+    @DepartmentGroup NVARCHAR(50),
+    @HireDate DATE,
+    @BirthDate DATE,
+    @EmailAddress NVARCHAR(50),
+    @PhoneNumber NVARCHAR(50),
+    @AddressID INT,
+    @AddressLine1 NVARCHAR(50),
+    @AddressLine2 NVARCHAR(50),
+    @City NVARCHAR(50),
+    @PostalCode NVARCHAR(50)
+AS
+BEGIN
+    UPDATE Person.person
+    SET FirstName = @FirstName,
+        LastName = @LastName
+    WHERE BusinessEntityID = @EmployeeID
+
+    UPDATE HumanResources.Employee
+    SET Gender = @Gender,
+        NationalIDNumber = @NationalIDNumber,
+        JobTitle = @JobTitle,
+        BirthDate = @BirthDate,
+        HireDate = @HireDate
+    WHERE BusinessEntityID = @EmployeeID
+
+    UPDATE HumanResources.EmployeeDepartmentHistory
+    SET DepartmentID = @DepartmentID
+    WHERE BusinessEntityID = @EmployeeID
+
+    UPDATE HumanResources.Department
+    SET DepartmentID = @DepartmentID,
+        Name = @DepartmentName,
+        GroupName = @DepartmentGroup
+    WHERE DepartmentID = @DepartmentID
+
+    UPDATE Person.EmailAddress
+    SET EmailAddress = @EmailAddress
+    WHERE BusinessEntityID = @EmployeeID
+
+    UPDATE Person.PersonPhone
+    SET PhoneNumber = @PhoneNumber
+    WHERE BusinessEntityID = @EmployeeID
+
+    UPDATE Person.Address
+    SET AddressLine1 = @AddressLine1,
+        AddressLine2 = @AddressLine2,
+        City = @City,
+        PostalCode = @PostalCode
+    WHERE AddressID = @AddressID
+END
