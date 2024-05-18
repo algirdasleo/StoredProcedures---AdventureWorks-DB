@@ -8,6 +8,7 @@ BEGIN
         hre.Gender AS Gender,
         hre.NationalIDNumber AS NationalID,
         hre.JobTitle AS JobTitle,
+        hrd.DepartmentID AS DepartmentID,
         hrd.Name AS Department,
         hrd.GroupName AS DepartmentGroup,
         hre.HireDate AS HireDate,
