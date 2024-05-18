@@ -1,4 +1,5 @@
 CREATE PROCEDURE UpdateEmployeeDetails
+    -- Update selected parameters for an employee
     @EmployeeID INT,
     @FirstName NVARCHAR(50),
     @LastName NVARCHAR(50),
@@ -20,41 +21,61 @@ CREATE PROCEDURE UpdateEmployeeDetails
     @PostalCode NVARCHAR(50)
 AS
 BEGIN
-    UPDATE Person.person
-    SET FirstName = @FirstName,
-        LastName = @LastName
-    WHERE BusinessEntityID = @EmployeeID
+    IF @FirstName IS NOT NULL OR @LastName IS NOT NULL
+    BEGIN
+        UPDATE Person.person
+        SET FirstName = ISNULL(@FirstName, FirstName),
+            LastName = ISNULL(@LastName, LastName)
+        WHERE BusinessEntityID = @EmployeeID
+    END;
 
-    UPDATE HumanResources.Employee
-    SET Gender = @Gender,
-        NationalIDNumber = @NationalIDNumber,
-        JobTitle = @JobTitle,
-        BirthDate = @BirthDate,
-        HireDate = @HireDate
-    WHERE BusinessEntityID = @EmployeeID
+    IF @Gender IS NOT NULL OR @NationalIDNumber IS NOT NULL OR @JobTitle IS NOT NULL OR @HireDate IS NOT NULL OR @BirthDate IS NOT NULL
+    BEGIN
+        UPDATE HumanResources.Employee
+        SET Gender = ISNULL(@Gender, Gender),
+            NationalIDNumber = ISNULL(@NationalIDNumber, NationalIDNumber),
+            JobTitle = ISNULL(@JobTitle, JobTitle),
+            BirthDate = ISNULL(@BirthDate, BirthDate),
+            HireDate = ISNULL(@HireDate, HireDate)
+        WHERE BusinessEntityID = @EmployeeID
+    END;
 
-    UPDATE HumanResources.EmployeeDepartmentHistory
-    SET DepartmentID = @DepartmentID
-    WHERE BusinessEntityID = @EmployeeID
+    IF @DepartmentID IS NOT NULL OR @Department IS NOT NULL
+    BEGIN
+        UPDATE HumanResources.EmployeeDepartmentHistory
+        SET DepartmentID = ISNULL(@DepartmentID, DepartmentID)
+        WHERE BusinessEntityID = @EmployeeID
+    END;
 
-    UPDATE HumanResources.Department
-    SET DepartmentID = @DepartmentID,
-        Name = @DepartmentName,
-        GroupName = @DepartmentGroup
-    WHERE DepartmentID = @DepartmentID
+    IF @DepartmentID IS NOT NULL OR @DepartmentName IS NOT NULL OR @DepartmentGroup IS NOT NULL
+    BEGIN
+        UPDATE HumanResources.Department
+        SET Name = ISNULL(@DepartmentName, Name),
+            GroupName = ISNULL(@DepartmentGroup, GroupName)
+        WHERE DepartmentID = @DepartmentID
+    END;
 
-    UPDATE Person.EmailAddress
-    SET EmailAddress = @EmailAddress
-    WHERE BusinessEntityID = @EmployeeID
+    IF @EmailAddress IS NOT NULL
+    BEGIN
+        UPDATE Person.EmailAddress
+        SET EmailAddress = ISNULL(@EmailAddress, EmailAddress)
+        WHERE BusinessEntityID = @EmployeeID
+    END;
 
-    UPDATE Person.PersonPhone
-    SET PhoneNumber = @PhoneNumber
-    WHERE BusinessEntityID = @EmployeeID
+    IF @PhoneNumber IS NOT NULL
+    BEGIN
+        UPDATE Person.PersonPhone
+        SET PhoneNumber = ISNULL(@PhoneNumber, PhoneNumber)
+        WHERE BusinessEntityID = @EmployeeID
+    END;
 
-    UPDATE Person.Address
-    SET AddressLine1 = @AddressLine1,
-        AddressLine2 = @AddressLine2,
-        City = @City,
-        PostalCode = @PostalCode
-    WHERE AddressID = @AddressID
+    IF @AddressID IS NOT NULL OR @AddressLine1 IS NOT NULL OR @AddressLine2 IS NOT NULL OR @City IS NOT NULL OR @PostalCode IS NOT NULL
+    BEGIN
+        UPDATE Person.Address
+        SET AddressLine1 = ISNULL(@AddressLine1, AddressLine1),
+            AddressLine2 = ISNULL(@AddressLine2, AddressLine2),
+            City = ISNULL(@City, City),
+            PostalCode = ISNULL(@PostalCode, PostalCode)
+        WHERE AddressID = @AddressID
+    END;
 END
