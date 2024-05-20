@@ -24,6 +24,7 @@ namespace API.Models
         public string PhoneNumber { get; set; } = string.Empty;
 
         // Address information
+        public int AddressID { get; set; }
         public string AddressLine1 { get; set; } = string.Empty; 
         public string AddressLine2 { get; set; } = string.Empty;
         public string City { get; set; } = string.Empty;
