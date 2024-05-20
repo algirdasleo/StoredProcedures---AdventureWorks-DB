@@ -1,7 +1,5 @@
 CREATE PROCEDURE GetEmployeesDetailsByDepartment
-    @DepartmentName NVARCHAR(50),
     @DepartmentID INT
-    -- Either DepartmentName or DepartmentID is required
 AS 
 BEGIN
     SELECT 
@@ -37,7 +35,7 @@ BEGIN
     JOIN 
         Person.StateProvince psp ON pa.StateProvinceID = psp.StateProvinceID
     WHERE 
-        hrd.Name = @DepartmentName OR hrd.DepartmentID = @DepartmentID
+        hrd.DepartmentID = @DepartmentID
     ORDER BY
         hre.BusinessEntityID;
 END
