@@ -1,0 +1,1 @@
+NOTE: Stored procedures that are in this folder exist in the database
