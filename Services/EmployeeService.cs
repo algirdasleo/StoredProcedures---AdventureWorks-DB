@@ -46,7 +46,7 @@ namespace API.Services
             using (var connection = _connectionFactory.CreateConnection())
             {
                 await connection.ExecuteAsync(
-                    "dbo.InsertEmployee",
+                    "dbo.InsertNewEmployee",
                     new 
                     {
                         FirstName = employee.FirstName,
