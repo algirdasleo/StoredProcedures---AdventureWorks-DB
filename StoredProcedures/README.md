@@ -1,1 +1,1 @@
-NOTE: Stored procedures that are in this folder exist in the database
+NOTE: Stored procedures that are in this folder are here for visual purposes, to show what their structure is in the database.
