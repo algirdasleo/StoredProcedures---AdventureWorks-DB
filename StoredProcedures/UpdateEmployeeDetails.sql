@@ -43,7 +43,7 @@ BEGIN
         WHERE BusinessEntityID = @EmployeeID
     END;
 
-    IF @DepartmentID IS NOT NULL OR @Department IS NOT NULL
+    IF @DepartmentID IS NOT NULL
     BEGIN
         UPDATE HumanResources.EmployeeDepartmentHistory
         SET DepartmentID = ISNULL(@DepartmentID, DepartmentID)
