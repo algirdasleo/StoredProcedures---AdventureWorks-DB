@@ -80,7 +80,7 @@ namespace API.Services
                     "dbo.UpdateEmployeeDetails",
                     new 
                     {
-                        EmployeeID = employee.Id, 
+                        EmployeeID = employee.EmployeeId, 
                         FirstName = employee.FirstName,
                         LastName = employee.LastName,
                         Gender = employee.Gender,
