@@ -93,7 +93,6 @@ namespace API.Services
                         BirthDate = employee.BirthDate,
                         EmailAddress = employee.EmailAddress,
                         PhoneNumber = employee.PhoneNumber,
-                        AddressID = employee.AddressID,
                         AddressLine1 = employee.AddressLine1,
                         AddressLine2 = employee.AddressLine2,
                         City = employee.City,
