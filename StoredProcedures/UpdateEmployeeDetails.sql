@@ -7,7 +7,6 @@ CREATE PROCEDURE UpdateEmployeeDetails
     @NationalIDNumber NVARCHAR(15),
     @JobTitle NVARCHAR(100),
     @DepartmentID INT,
-    @Department NVARCHAR(50),
     @DepartmentName NVARCHAR(50),
     @DepartmentGroup NVARCHAR(50),
     @HireDate DATE,
