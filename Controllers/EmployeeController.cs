@@ -28,7 +28,7 @@ namespace API.Controllers
             return Ok(employee);
         }
 
-        [HttpGet("department/{department}")]
+        [HttpGet("department/{departmentId}")]
         public async Task<ActionResult<IEnumerable<Employee>>> GetEmployeeByDepartmentId(int departmentId)
         {
             var employees = await _employeeService.GetEmployeesDetailsByDepartment(departmentId);
