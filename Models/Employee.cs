@@ -3,7 +3,7 @@ namespace API.Models
     public class Employee
     {
         // Employee information
-        public int Id { get; set; }
+        public int EmployeeId { get; set; }
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public char? Gender { get; set; }
