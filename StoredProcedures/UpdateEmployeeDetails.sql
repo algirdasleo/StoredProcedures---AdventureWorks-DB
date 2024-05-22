@@ -14,13 +14,17 @@ CREATE PROCEDURE UpdateEmployeeDetails
     @BirthDate DATE,
     @EmailAddress NVARCHAR(50),
     @PhoneNumber NVARCHAR(50),
-    @AddressID INT,
     @AddressLine1 NVARCHAR(50),
     @AddressLine2 NVARCHAR(50),
     @City NVARCHAR(50),
     @PostalCode NVARCHAR(50)
 AS
 BEGIN
+    DECLARE @AddressID INT;
+    SELECT @AddressID = bea.AddressID
+    FROM Person.BusinessEntityAddress bea
+    WHERE bea.BusinessEntityID = @EmployeeID;
+
     IF @FirstName IS NOT NULL OR @LastName IS NOT NULL
     BEGIN
         UPDATE Person.person
